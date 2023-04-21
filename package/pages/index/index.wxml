@@ -1,0 +1,9 @@
+<!-- <view class="demo"></view> -->
+<input model:value="{{we$$form$$c}}"/>
+<input model:value="{{we$$num}}"/>
+{{we$$form$$c}}
+<br/>
+{{we$$num}}
+<button bindtap="shuchu">输出</button>
+<button bindtap="add">加</button>
+<test></test>
