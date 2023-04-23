@@ -3,6 +3,7 @@ Request.prototype.instance = function () {};
 
 export const WxRequest = {
   install(vm) {
-    vm.plugins.$request = request;
+    console.log(vm)
+    vm.plugins.$request = Request;
   },
 };

@@ -11,23 +11,23 @@ export const use = fns => {
 
 function set(fn) {
   fn.prototype.use = function (plugins) {
-    if (Array.isArray(fn)) {
+    if (Array.isArray(plugins)) {
       plugins.map(item => {
-        item.install?.call(this);
+        item.install?.call(null, fn);
       });
     } else {
-      plugins.install?.call(this);
+      plugins.install?.call(null, fn);
     }
-    return this;
+    return fn;
   };
   fn.use = function (plugins) {
-    if (Array.isArray(fn)) {
+    if (Array.isArray(plugins)) {
       plugins.map(item => {
-        item.install?.call(this);
+        item.install?.call(null, fn);
       });
     } else {
-      plugins.install?.call(this);
+      plugins.install?.call(null, fn);
     }
-    return this;
+    return fn;
   };
 }

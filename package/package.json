@@ -1,0 +1,15 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "types": "node_modules/wx-query/index.d",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-query": "0.0.4"
+  }
+}

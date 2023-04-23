@@ -1,11 +1,13 @@
 // index.js
 // 获取应用实例
-import { wxPage } from '../../sdk/wx-simple.min'
-
-console.dir(wxPage)
-
+const {
+  wxPage,
+  WxRequest
+} = require('../../sdk/index.js')
+wxPage.use([WxRequest])
 wxPage.init({
   sup: 'we',
+  $keyName: '$query',
   data: {},
   observeData: {
     form: {
@@ -13,16 +15,16 @@ wxPage.init({
       b: 2,
       c: 3
     },
-    num:12
+    num: 12
   },
-  onReady(){
-    // console.log(1)
+  onReady() {
+    console.log(this.$query)
   },
-  add(){
+  add() {
     this.observeData.form.c += 100
     console.log(this.observeData)
   },
   shuchu() {
-    console.log(this.data,this.observeData)
+    console.log(this.data, this.observeData)
   },
 })

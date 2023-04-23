@@ -10,13 +10,13 @@ export default {
   input: './src/index.js',
   output: [
     {
-      file: 'dist/wx-simple.min.js',
+      file: 'dist/index.js',
       format: 'umd',
       sourcemap: false,
       name: packageJson.name,
     },
     {
-      file: 'package/sdk/wx-simple.min.js',
+      file: 'package/sdk/index.js',
       format: 'es',
       sourcemap: false,
       name: packageJson.name,

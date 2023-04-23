@@ -1,3 +1,5 @@
+import { isEmpty } from '../util/util';
+
 export const init = fns => {
   if (Array.isArray(fns)) {
     fns.map(item => {
@@ -68,12 +70,19 @@ function instance(options) {
       }
     }
   };
+  if (!isEmpty(this.plugins)) {
+    if (options.$keyName) {
+      options[options.$keyName] = this.plugins;
+    } else {
+      options.$ = this.plugins;
+    }
+  }
   options.onReady && options.onReady();
   options.onReady = function () {
     if (this.observeData) {
       this.createDataKey(options.observeData, options.sup || 'L', this, 'observeData');
     }
   };
-  console.log(this,'----------------');
+
   Page(options);
 }
