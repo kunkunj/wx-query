@@ -80,7 +80,7 @@ function instance(options) {
   options.onReady && options.onReady();
   options.onReady = function () {
     if (this.observeData) {
-      this.createDataKey(options.observeData, options.sup || 'L', this, 'observeData');
+      this.createDataKey(options.observeData, 'observeData', this, 'observeData');
     }
   };
 

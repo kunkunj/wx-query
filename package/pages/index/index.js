@@ -10,7 +10,7 @@ router.beforeEach((from, to, next) => {
   console.log('1111')
   next()
 })
-router.switchTab()
+router.testpush()
 wxPage.use([WxRequest])
 wxPage.init({
   $keyName: '$query',
@@ -23,12 +23,12 @@ wxPage.init({
     },
     num: 12
   },
-  onReady() {
+  onLoad() {
     console.log(this.$query)
   },
   add() {
     this.observeData.form.c += 100
-    console.log(this.observeData)
+    console.log(this.observeData,this.data)
   },
   shuchu() {
     console.log(this.data, this.observeData)
