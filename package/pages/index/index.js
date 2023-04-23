@@ -2,11 +2,17 @@
 // 获取应用实例
 const {
   wxPage,
-  WxRequest
+  WxRequest,
+  WxRouter
 } = require('../../sdk/index.js')
+const router = WxRouter()
+router.beforeEach((from, to, next) => {
+  console.log('1111')
+  next()
+})
+router.switchTab()
 wxPage.use([WxRequest])
 wxPage.init({
-  sup: 'we',
   $keyName: '$query',
   data: {},
   observeData: {

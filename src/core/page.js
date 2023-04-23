@@ -10,5 +10,4 @@ create(wxPage)
 init(wxPage)
 plugin(wxPage)
 
-
 export default wxPage;
