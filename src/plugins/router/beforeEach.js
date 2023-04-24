@@ -45,6 +45,6 @@ export const beforeEach = Router => {
       error('beforeEach arg not a function');
     }
     this.isWatchRouter = true;
-    Router.hooksQuee.quees.push(initQuee(cb, this));
+    Router.hooksQuee.quees.push(initQuee(cb, Router));
   };
 };

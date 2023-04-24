@@ -1,3 +1,4 @@
+import wxPage from '../core/page';
 import { isEmpty } from '../util/util';
 
 export const init = fns => {
@@ -83,6 +84,6 @@ function instance(options) {
       this.createDataKey(options.observeData, 'observeData', this, 'observeData');
     }
   };
-
+  wxPage.pages.push(options);
   Page(options);
 }

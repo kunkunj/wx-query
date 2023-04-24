@@ -15,4 +15,8 @@ function set(fn) {
   fn.create = function () {
     return new fn();
   };
+  fn.pages = []
+  fn.getPages = function () {
+    return this.pages
+  }
 }

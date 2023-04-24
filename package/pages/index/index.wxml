@@ -1,8 +1,8 @@
 <input model:value="{{observeData$$form$$c}}" />
 <input model:value="{{observeData$$num}}" />
 {{observeData$$form$$c}}
-<br />
+<view></view>
 {{observeData$$num}}
 <button bindtap="shuchu">输出</button>
 <button bindtap="add">加</button>
-<test></test>
+<button bindtap="navto">跳转</button>

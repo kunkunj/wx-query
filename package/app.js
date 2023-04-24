@@ -4,7 +4,7 @@ const {
 } = require('./sdk/index.js')
 const router = WxRouter()
 router.beforeEach((from, to, next) => {
-  console.log('333')
+  console.log(from, to, '333')
   next()
 })
 App({

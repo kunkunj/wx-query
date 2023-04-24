@@ -12,8 +12,9 @@ router.beforeEach((from, to, next) => {
 })
 router.testpush()
 wxPage.use([WxRequest])
-console.log(wxPage)
-wxPage.init({
+const Page = wxPage.create()
+console.log(Page)
+Page.init({
   $keyName: '$query',
   data: {},
   observeData: {
@@ -25,17 +26,10 @@ wxPage.init({
     num: 12
   },
   onLoad() {
-    console.log(wxPage.getPages(), '--------------')
-    console.log(getCurrentPages())
   },
   add() {
     this.observeData.form.c += 100
-    console.log(this.observeData, this.data)
-  },
-  navto() {
-    router.navigateTo({
-      url: '/pages/log/log'
-    })
+    console.log(this.observeData,this.data)
   },
   shuchu() {
     console.log(this.data, this.observeData)

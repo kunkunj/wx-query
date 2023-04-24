@@ -12,6 +12,8 @@ export const initMethods = Router => {
     }
   };
   Router.prototype.switchTab = function (obj) {
+    let _this = this
+    this.updateStack(obj)
     Router.hooksQuee.execute();
     if (Router.hooksQuee.isExcute() && this.isWatchRouter) {
       warning('beforeEach hook need to execute next');
@@ -21,13 +23,15 @@ export const initMethods = Router => {
       wx.switchTab({
         ...obj,
         complete: function (e) {
-          this.isWatchRouter && Router.hooksQuee.reset();
+          _this.isWatchRouter && Router.hooksQuee.reset();
           obj?.complete?.call(wx, e);
         },
       });
     }
   };
   Router.prototype.reLaunch = function (obj) {
+    let _this = this
+    this.updateStack(obj)
     Router.hooksQuee.execute();
     if (Router.hooksQuee.isExcute() && this.isWatchRouter) {
       warning('beforeEach hook need to execute next');
@@ -37,13 +41,15 @@ export const initMethods = Router => {
       wx.reLaunch({
         ...obj,
         complete: function (e) {
-          this.isWatchRouter && Router.hooksQuee.reset();
+          _this.isWatchRouter && Router.hooksQuee.reset();
           obj?.complete?.call(wx, e);
         },
       });
     }
   };
   Router.prototype.redirectTo = function (obj) {
+    let _this = this
+    this.updateStack(obj)
     Router.hooksQuee.execute();
     if (Router.hooksQuee.isExcute() && this.isWatchRouter) {
       warning('beforeEach hook need to execute next');
@@ -53,13 +59,16 @@ export const initMethods = Router => {
       wx.redirectTo({
         ...obj,
         complete: function (e) {
-          this.isWatchRouter && Router.hooksQuee.reset();
+          _this.isWatchRouter && Router.hooksQuee.reset();
           obj?.complete?.call(wx, e);
         },
       });
     }
   };
   Router.prototype.navigateTo = function (obj) {
+    let _this = this
+    console.log(this)
+    this.updateStack(obj)
     Router.hooksQuee.execute();
     if (Router.hooksQuee.isExcute() && this.isWatchRouter) {
       warning('beforeEach hook need to execute next');
@@ -68,14 +77,20 @@ export const initMethods = Router => {
     if (!Router.hooksQuee.isExcute() || !this.isWatchRouter) {
       wx.navigateTo({
         ...obj,
+        success: function (e) {
+          console.log(e)
+          obj?.success?.call(wx, e);
+        },
         complete: function (e) {
-          this.isWatchRouter && Router.hooksQuee.reset();
+          _this.isWatchRouter && Router.hooksQuee.reset();
           obj?.complete?.call(wx, e);
         },
       });
     }
   };
   Router.prototype.navigateBack = function (obj) {
+    let _this = this
+    this.updateStack(obj)
     Router.hooksQuee.execute();
     if (Router.hooksQuee.isExcute() && this.isWatchRouter) {
       warning('beforeEach hook need to execute next');
@@ -85,7 +100,7 @@ export const initMethods = Router => {
       wx.navigateBack({
         ...obj,
         complete: function (e) {
-          this.isWatchRouter && Router.hooksQuee.reset();
+          _this.isWatchRouter && Router.hooksQuee.reset();
           obj?.complete?.call(wx, e);
         },
       });
