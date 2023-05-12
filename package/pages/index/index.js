@@ -11,8 +11,10 @@ router.beforeEach((from, to, next) => {
   next()
 })
 router.testpush()
-wxPage.use([WxRequest])
-console.log(wxPage)
+const requestInstance = WxRequest.create({baseUrl:'https://blog.csdn.net/'})
+wxPage.use([requestInstance])
+requestInstance.request({url:'https://blog.csdn.net/'})
+console.log(requestInstance)
 wxPage.init({
   $keyName: '$query',
   data: {},
@@ -26,8 +28,17 @@ wxPage.init({
     num: 12
   },
   onLoad() {
-    console.log(wxPage.getPages(), '--------------')
+    console.dir(this.$query)
     console.log(getCurrentPages())
+    wx.request({
+      url: 'https://blog.csdn.net/aaaa111',
+      success(e){
+        console.log(e)
+      },
+      fail(e){
+        console.log(e)
+      }
+    })
   },
   add() {
     this.observeData.form.c += 100

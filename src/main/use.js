@@ -1,3 +1,5 @@
+import { error } from '../util/util';
+
 export const use = fns => {
   if (Array.isArray(fns)) {
     fns.map(item => {
@@ -11,22 +13,30 @@ export const use = fns => {
 
 function set(fn) {
   fn.prototype.use = function (plugins) {
-    if (Array.isArray(plugins)) {
-      plugins.map(item => {
-        item.install?.call(null, fn);
-      });
-    } else {
-      plugins.install?.call(null, fn);
+    try {
+      if (Array.isArray(plugins)) {
+        plugins.map(item => {
+          item.install(fn);
+        });
+      } else {
+        plugins.install(fn);
+      }
+    } catch (e) {
+      error('plugin need a install function');
     }
     return fn;
   };
   fn.use = function (plugins) {
-    if (Array.isArray(plugins)) {
-      plugins.map(item => {
-        item.install?.call(null, fn);
-      });
-    } else {
-      plugins.install?.call(null, fn);
+    try {
+      if (Array.isArray(plugins)) {
+        plugins.map(item => {
+          item.install(fn);
+        });
+      } else {
+        plugins.install(fn);
+      }
+    } catch (e) {
+      error('plugin need a install function');
     }
     return fn;
   };

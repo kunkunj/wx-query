@@ -1,8 +1,10 @@
-function Request() {}
-Request.prototype.instance = function () {};
+import { create } from "./create";
 
-export const WxRequest = {
-  install(vm) {
-    vm.plugins.$request = Request;
-  },
-};
+export function WxRequest() {}
+
+create(WxRequest)
+
+// WxRequest.install = function (vm) {
+//   console.log(2312312)
+//   vm.plugins.$request = WxRequest;
+// }
