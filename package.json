@@ -2,7 +2,7 @@
   "name": "wx-query",
   "version": "0.0.5",
   "description": "",
-  "main": "./dist/wx-simple.min.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "serve": "rollup -c -w",

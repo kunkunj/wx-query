@@ -6,7 +6,7 @@ const { terser } = require('rollup-plugin-terser');
 const packageJson = require('./package.json');
 //清除工具
 import clear from 'rollup-plugin-clear';
-export default {
+export default [{
   input: './src/index.js',
   output: [
     {
@@ -34,4 +34,4 @@ export default {
       watch: true, // 实时监听文件变化
     }),
   ],
-};
+}];

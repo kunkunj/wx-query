@@ -3,6 +3,12 @@
 {{observeData$$form$$c}}
 <view></view>
 {{observeData$$num}}
+<view></view>
+<text wx:for="{{observeData$$arr}}">e{{item}}</text>
 <button bindtap="shuchu">输出</button>
 <button bindtap="add">加</button>
 <button bindtap="navto">跳转</button>
+<button bindtap="addArray">push</button>
+<button bindtap="popArray">pop</button>
+<button bindtap="shiftArray">shift</button>
+<button bindtap="unshiftArray">unshift</button>

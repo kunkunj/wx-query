@@ -1,0 +1,8 @@
+<!--pages/wxs/wxs.wxml-->
+<wxs src='./test.wxs' module="tool" />
+<view>
+  {{tool.isObject({a:1})}}
+  {{tool.isString('1')}}
+  {{tool.isString({a:1})}}
+  {{tool.castArray(1)}}
+</view>

@@ -1,0 +1,2 @@
+var language = require('./language/index.wxs')
+module.exports = language

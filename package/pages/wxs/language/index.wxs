@@ -1,0 +1,56 @@
+function castArray(arg) {
+  if (!arguments.length) {
+    return []
+  }
+  return arg.constructor === 'Array' ? arg : [arg]
+}
+function conformsTo(target,source ){
+  
+}
+function isObject(arg) {
+  return arg.constructor == 'Object'
+}
+
+function isString(arg) {
+  return arg.constructor == 'String'
+}
+
+function isNumber(arg) {
+  return arg.constructor == 'Number'
+}
+
+function isBoolean(arg) {
+  return arg.constructor == 'Boolean'
+}
+
+function isFunction(arg) {
+  return arg.constructor == 'Function'
+}
+
+function isArray(arg) {
+  return arg.constructor == 'Array'
+}
+
+function isDate(arg) {
+  return arg.constructor == 'Date'
+}
+
+function isUndefined(arg) {
+  return typeof arg == 'undefined'
+}
+
+function isNaN(arg) {
+  return arg !== arg
+}
+module.exports = {
+  isObject: isObject,
+  isString: isString,
+  isNumber: isNumber,
+  isBoolean: isBoolean,
+  isFunction: isFunction,
+  isArray: isArray,
+  isDate: isDate,
+  isUndefined: isUndefined,
+  isNaN: isNaN,
+  castArray: castArray
+}
