@@ -8,7 +8,6 @@ export const initMethods = Router => {
     }
     if (!Router.hooksQuee.isExcute() || !this.isWatchRouter) {
       this.isWatchRouter && Router.hooksQuee.reset();
-      console.log('执行成功', Router.hooksQuee);
     }
   };
   Router.prototype.switchTab = function (obj) {

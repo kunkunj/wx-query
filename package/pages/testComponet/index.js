@@ -36,7 +36,6 @@ WxComponet.init({
     },
     add() {
       this.observeData.form.c += 100
-      console.log(this.observeData, this.data)
     },
     addArray(){
       this.observeData.arr.push('2')

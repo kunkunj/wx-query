@@ -1,31 +1,5 @@
 import { isEmpty } from '../util/util';
-
-const setArrayFn = function (target, vm, key) {
-  target.push = function (...args) {
-    Array.prototype.push.call(target, ...args);
-    vm.setData({
-      [key]: target,
-    });
-  };
-  target.pop = function (...args) {
-    Array.prototype.pop.call(target, ...args);
-    vm.setData({
-      [key]: target,
-    });
-  };
-  target.shift = function (...args) {
-    Array.prototype.shift.call(target, ...args);
-    vm.setData({
-      [key]: target,
-    });
-  };
-  target.unshift = function (...args) {
-    Array.prototype.unshift.call(target, ...args);
-    vm.setData({
-      [key]: target,
-    });
-  };
-};
+import { setArrayFn } from './format';
 
 export const initComponet = fns => {
   if (Array.isArray(fns)) {
@@ -76,7 +50,6 @@ function instance(options) {
 }
 function observe(object, sup, vm, parent) {
   for (const key in object) {
-    console.log(key, object);
     if (object[key].constructor.name == 'Object') {
       vm.createDataKey(object[key], sup + '$$' + key, vm, parent + '.' + key);
     } else {
