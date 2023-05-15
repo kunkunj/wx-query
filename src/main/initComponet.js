@@ -27,7 +27,7 @@ const setArrayFn = function (target, vm, key) {
   };
 };
 
-export const init = (fns) => {
+export const initComponet = fns => {
   if (Array.isArray(fns)) {
     fns.map(item => {
       set(item);
@@ -52,18 +52,31 @@ function instance(options) {
       options.$ = this.plugins;
     }
   }
-  options.createDataKey = observe;
-  options.onReady && options.onReady();
-  options.onReady = function () {
-    if (this.observeData) {
-      this.createDataKey(options.observeData, 'observeData', this, 'observeData');
-    }
-  };
-  Page(options);
+  options?.lifetimes?.ready && options.lifetimes.ready();
+  options?.ready && options.ready();
+  if (options?.ready) {
+    options.ready = function () {
+      this.createDataKey = observe;
+      if (options.observeData) {
+        this.observeData = options.observeData;
+        this.createDataKey(options.observeData, 'observeData', this, 'observeData');
+      }
+    };
+  } else {
+    options.lifetimes = options.lifetimes || {}
+    options.lifetimes.ready = function () {
+      this.createDataKey = observe;
+      if (options.observeData) {
+        this.observeData = options.observeData;
+        this.createDataKey(options.observeData, 'observeData', this, 'observeData');
+      }
+    };
+  }
+  Component(options);
 }
 function observe(object, sup, vm, parent) {
-  console.log(vm.createDataKey);
   for (const key in object) {
+    console.log(key, object);
     if (object[key].constructor.name == 'Object') {
       vm.createDataKey(object[key], sup + '$$' + key, vm, parent + '.' + key);
     } else {

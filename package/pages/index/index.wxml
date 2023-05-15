@@ -12,3 +12,5 @@
 <button bindtap="popArray">pop</button>
 <button bindtap="shiftArray">shift</button>
 <button bindtap="unshiftArray">unshift</button>
+组件部分
+<componet />

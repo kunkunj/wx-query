@@ -1,0 +1,14 @@
+<!--pages/testComponet/index.wxml-->
+
+<button bindtap="add">加</button>
+<button bindtap="addArray">push</button>
+<button bindtap="popArray">pop</button>
+<button bindtap="shiftArray">shift</button>
+<button bindtap="unshiftArray">unshift</button>
+<input model:value="{{observeData$$form$$c}}" />
+<input model:value="{{observeData$$num}}" />
+{{observeData$$form$$c}}
+<view></view>
+{{observeData$$num}}
+<view></view>
+<text wx:for="{{observeData$$arr}}">e{{item}}</text>
