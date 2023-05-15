@@ -11,10 +11,15 @@ router.beforeEach((from, to, next) => {
   next()
 })
 router.testpush()
-const requestInstance = WxRequest.create({baseUrl:'https://blog.csdn.net/'})
-wxPage.use([requestInstance])
-requestInstance.request({url:'https://blog.csdn.net/'})
-console.log(requestInstance)
+const requestInstance = WxRequest.create({baseURL:'https://blog.csdn.net/'})
+wxPage.use(WxRequest)
+console.dir(WxRequest)
+WxRequest.interceptors.response.use(function(response){
+  console.log(111222)
+  return {a:1}
+},function(error){
+  return Promise.reject(1)
+})
 wxPage.init({
   $keyName: '$query',
   data: {},
@@ -28,16 +33,9 @@ wxPage.init({
     num: 12
   },
   onLoad() {
-    console.dir(this.$query)
-    console.log(getCurrentPages())
-    wx.request({
-      url: 'https://blog.csdn.net/aaaa111',
-      success(e){
-        console.log(e)
-      },
-      fail(e){
-        console.log(e)
-      }
+    console.dir(this)
+    this.$query.$request({url:'https://blog.csdn.net/'}).then(res => {
+      console.log(res,2)
     })
   },
   add() {

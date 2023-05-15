@@ -13,13 +13,18 @@ export const use = fns => {
 
 function set(fn) {
   fn.prototype.use = function (plugins) {
+    console.warn(plugins);
     try {
       if (Array.isArray(plugins)) {
         plugins.map(item => {
-          item.install(fn);
+          if (item.install) {
+            item.install(fn);
+          }
         });
       } else {
-        plugins.install(fn);
+        if (plugins.install) {
+          plugins.install(fn);
+        }
       }
     } catch (e) {
       error('plugin need a install function');
@@ -30,10 +35,14 @@ function set(fn) {
     try {
       if (Array.isArray(plugins)) {
         plugins.map(item => {
-          item.install(fn);
+          if (item.install) {
+            item.install(fn);
+          }
         });
       } else {
-        plugins.install(fn);
+        if (plugins.install) {
+          plugins.install(fn);
+        }
       }
     } catch (e) {
       error('plugin need a install function');

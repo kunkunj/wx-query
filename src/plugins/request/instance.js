@@ -1,19 +1,15 @@
 import { InterceptorManager } from './interceptor';
 
 export function Instance(options) {
-  this.baseURL = options.baseURL || '';
-  this.timeout = options.timeout || 10000;
-  this.headers = options.headers || {};
+  this.baseURL = options?.baseURL || '';
+  this.timeout = options?.timeout || 10000;
+  this.headers = options?.headers || {};
   this.interceptors = {
     request: new InterceptorManager(),
     response: new InterceptorManager(),
   };
 }
-Instance.prototype.install = function (vm) {
-  vm.plugins.$request = this;
-};
-
-Instance.prototype.request = function (options) {
+export function requestInstance(options) {
   let config = options || {};
   let len = this.interceptors.request.handlers.length;
   let i = 0;
@@ -45,15 +41,64 @@ Instance.prototype.request = function (options) {
           }
           i++;
         }
-        if (/2\d+/.test(result.statusCode)) {
-          resolve(response);
-        } else {
-          reject(response);
-        }
+        resolve(response);
       },
       fail(error) {
         reject(error);
       },
     });
   });
+};
+
+Instance.prototype.request = requestInstance
+Instance.prototype.install = function (vm) {
+  vm.plugins.$request = this;
+};
+Instance.prototype.post = function (url, options = {}) {
+  if (typeof options != 'object') {
+    options = {};
+  }
+  return this.request({ url, ...options, method: 'post' });
+};
+Instance.prototype.get = function (url, options) {
+  if (typeof options != 'object') {
+    options = {};
+  }
+  return this.request({ url, ...options, method: 'get' });
+};
+Instance.prototype.delete = function (url, options) {
+  if (typeof options != 'object') {
+    options = {};
+  }
+  return this.request({ url, ...options, method: 'delete' });
+};
+Instance.prototype.head = function (url, options) {
+  if (typeof options != 'object') {
+    options = {};
+  }
+  return this.request({ url, ...options, method: 'head' });
+};
+Instance.prototype.trace = function (url, options) {
+  if (typeof options != 'object') {
+    options = {};
+  }
+  return this.request({ url, ...options, method: 'trace' });
+};
+Instance.prototype.put = function (url, options) {
+  if (typeof options != 'object') {
+    options = {};
+  }
+  return this.request({ url, ...options, method: 'put' });
+};
+Instance.prototype.options = function (url, options) {
+  if (typeof options != 'object') {
+    options = {};
+  }
+  return this.request({ url, ...options, method: 'options' });
+};
+Instance.prototype.connect = function (url, options) {
+  if (typeof options != 'object') {
+    options = {};
+  }
+  return this.request({ url, ...options, method: 'connect' });
 };
