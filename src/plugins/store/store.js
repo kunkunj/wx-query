@@ -13,25 +13,22 @@ export function Store(id, options) {
 }
 Store.prototype.init = function (vm) {
   flatState(this._da, '$store$$' + this.id, vm);
-  return Dep.has(this.id, vm);
+  // setStore()
+  return Dep.has(this.id, vm, this);
 };
-function observeState(object, sup, store) {
+function observeState(object, sup, store, state) {
   for (const key in object) {
     if (object[key] && object[key].constructor.name == 'Object') {
       observeState(object[key], sup + '$$' + key, store);
     } else {
-      if (object[key].constructor.name == 'Array') {
-        setArrayFn(object[key], store, sup, key, val);
-      } else {
-        Object.defineProperty(object, key, {
-          set(val) {
-            setStore(store, sup, key, val);
-          },
-          get() {
-            return store[sup + '$$' + key];
-          },
-        });
-      }
+      Object.defineProperty(object, key, {
+        set(val) {
+          setStore(store, sup, key, val);
+        },
+        get() {
+          return store[sup + '$$' + key];
+        },
+      });
     }
   }
 }
@@ -57,10 +54,10 @@ export function setStore(store, sup, key, val) {
     }
   }
 }
-function flatState(object, sup, vm) {
+function flatState(object, sup, vm, store) {
   for (const key in object) {
     if (object[key] && object[key].constructor.name == 'Object') {
-      flatState(object[key], sup + '$$' + key, vm);
+      flatState(object[key], sup + '$$' + key, vm, store);
     } else {
       vm.setData({
         [sup + '$$' + key]: object[key],
@@ -69,25 +66,25 @@ function flatState(object, sup, vm) {
   }
 }
 
-const setArrayFn = function (target, store, sup, key, val) {
-  target.push = function (...args) {
-    Array.prototype.push.call(target, ...args);
-    setStore(store, sup, key, val);
-  };
-  target.pop = function (...args) {
-    Array.prototype.pop.call(target, ...args);
-    setStore(store, sup, key, val);
-  };
-  target.shift = function (...args) {
-    Array.prototype.shift.call(target, ...args);
-    setStore(store, sup, key, val);
-  };
-  target.unshift = function (...args) {
-    Array.prototype.unshift.call(target, ...args);
-    setStore(store, sup, key, val);
-  };
-  target.concat = function (...args) {
-    Array.prototype.concat.call(target, ...args);
-    setStore(store, sup, key, val);
-  };
-};
+// const setArrayFn = function (target, store, sup, key, val) {
+//   target.push = function (...args) {
+//     Array.prototype.push.call(target, ...args);
+//     setStore(store, sup, key, target);
+//   };
+//   target.pop = function (...args) {
+//     Array.prototype.pop.call(target, ...args);
+//     setStore(store, sup, key, target);
+//   };
+//   target.shift = function (...args) {
+//     Array.prototype.shift.call(target, ...args);
+//     setStore(store, sup, key, target);
+//   };
+//   target.unshift = function (...args) {
+//     Array.prototype.unshift.call(target, ...args);
+//     setStore(store, sup, key, target);
+//   };
+//   target.concat = function (...args) {
+//     Array.prototype.concat.call(target, ...args);
+//     setStore(store, sup, key, target);
+//   };
+// };

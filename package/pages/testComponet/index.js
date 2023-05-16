@@ -53,15 +53,19 @@ WxComponet.init({
     },
     addArray() {
       this.observeData.arr.push('2')
+      store.push()
     },
     popArray() {
       this.observeData.arr.pop()
+      store.pop()
     },
     shiftArray() {
       this.observeData.arr.shift()
+      store.shift()
     },
     unshiftArray() {
       this.observeData.arr.unshift(1)
+      store.unshift()
     },
   }
 })

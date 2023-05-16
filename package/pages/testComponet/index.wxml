@@ -1,5 +1,6 @@
 <!--pages/testComponet/index.wxml-->
 {{$store$$user$$name}}
+<text wx:for="{{$store$$user$$list}}">{{item}}</text>
 <button bindtap="action">action</button>
 <button bindtap="add">加</button>
 <button bindtap="addArray">push</button>
