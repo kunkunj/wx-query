@@ -9,5 +9,7 @@ router.beforeEach((from, to, next) => {
 })
 App({
   onLaunch() {},
-  globalData: {}
+  globalData: {
+    id:1
+  }
 })

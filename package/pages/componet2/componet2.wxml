@@ -1,0 +1,2 @@
+<!--pages/componet2/componet2.wxml-->
+{{$store$$user$$name}}

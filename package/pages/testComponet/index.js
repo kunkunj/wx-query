@@ -1,7 +1,10 @@
 const {
   WxRequest,
-  WxComponet
+  WxComponet,
+  createStore
 } = require('../../sdk/index.js')
+import { store } from '../../store/index.js'
+const app =getApp()
 
 WxComponet.init({
   /**
@@ -10,12 +13,12 @@ WxComponet.init({
   properties: {
 
   },
-
+  Store:[store],
   /**
    * 组件的初始数据
    */
   data: {
-
+    iiii:app.globalData.id
   },
   observeData: {
     form: {
@@ -23,30 +26,41 @@ WxComponet.init({
       b: 2,
       c: 3
     },
-    arr:['1'],
+    arr: ['1'],
     num: 12
+  },
+  ready(){
+    console.log(this)
   },
   /**
    * 组件的方法列表
    */
   methods: {
-    shuchu(){
+    nav(){
+  wx.navigateTo({
+    url: '../index/index',
+  })
+    },
+    action(){
+      store.changeName()
+    },
+    shuchu() {
       console.log(this)
       console.log(this.data)
     },
     add() {
       this.observeData.form.c += 100
     },
-    addArray(){
+    addArray() {
       this.observeData.arr.push('2')
     },
-    popArray(){
+    popArray() {
       this.observeData.arr.pop()
     },
-    shiftArray(){
+    shiftArray() {
       this.observeData.arr.shift()
     },
-    unshiftArray(){
+    unshiftArray() {
       this.observeData.arr.unshift(1)
     },
   }

@@ -66,7 +66,6 @@ export const initMethods = Router => {
   };
   Router.prototype.navigateTo = function (obj) {
     let _this = this
-    console.log(this)
     this.updateStack(obj)
     Router.hooksQuee.execute();
     if (Router.hooksQuee.isExcute() && this.isWatchRouter) {
@@ -77,7 +76,6 @@ export const initMethods = Router => {
       wx.navigateTo({
         ...obj,
         success: function (e) {
-          console.log(e)
           obj?.success?.call(wx, e);
         },
         complete: function (e) {

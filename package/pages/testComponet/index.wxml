@@ -1,10 +1,12 @@
 <!--pages/testComponet/index.wxml-->
-
+{{$store$$user$$name}}
+<button bindtap="action">action</button>
 <button bindtap="add">加</button>
 <button bindtap="addArray">push</button>
 <button bindtap="popArray">pop</button>
 <button bindtap="shiftArray">shift</button>
 <button bindtap="unshiftArray">unshift</button>
+<button bindtap="nav">跳转</button>
 <input model:value="{{observeData$$form$$c}}" />
 <input model:value="{{observeData$$num}}" />
 {{observeData$$form$$c}}

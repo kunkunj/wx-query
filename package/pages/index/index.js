@@ -5,6 +5,7 @@ const {
   WxRequest,
   WxRouter
 } = require('../../sdk/index.js')
+import { store } from '../../store/index.js'
 const router = WxRouter()
 router.beforeEach((from, to, next) => {
   console.log('1111')
@@ -23,6 +24,7 @@ WxRequest.interceptors.response.use(function(response){
 wxPage.init({
   $keyName: '$query',
   data: {},
+  Store:[store],
   observeData: {
     form: {
       a: 1,
@@ -32,11 +34,18 @@ wxPage.init({
     arr:['1'],
     num: 12
   },
+  onReady(){
+    console.log(this,'ready')
+  },
   onLoad() {
     console.dir(this)
     this.$query.$request({url:'https://blog.csdn.net/'}).then(res => {
       console.log(res,2)
     })
+  },
+  action(){
+    console.log(store)
+    store.changeName()
   },
   add() {
     this.observeData.form.c += 100

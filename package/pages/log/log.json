@@ -1,4 +1,6 @@
 {
   "usingComponents": {
-    "componet":"../testComponet/index"}
+    "componet2":"../componet2/componet2",
+    "componet":"../testComponet/index"
+  }
 }
