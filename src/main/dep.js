@@ -7,7 +7,7 @@ Dep.addDep = function (id) {
 };
 Dep.pushDep = function (id, target) {
   if (!Dep.data[id]) {
-    error('Store' + id + ' is not create');
+    error('Store ' + id + ' is not create');
     return;
   }
   const index = Dep.data[id].findIndex(dep => dep.is == target.is);

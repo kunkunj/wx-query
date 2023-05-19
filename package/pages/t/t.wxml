@@ -1,0 +1,3 @@
+
+<text>{{$store$$user$$name}}</text>
+<button bindtap='changeStore'>切换名称</button>

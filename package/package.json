@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "wx-query": "0.0.4"
+    "wx-query": "1.0.1"
   }
 }

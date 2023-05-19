@@ -1,12 +1,12 @@
 const {
   WxRequest,
-  WxComponet,
+  wxComponet,
   createStore
 } = require('../../sdk/index.js')
 import {
   store
 } from '../../store/index.js'
-WxComponet.init({
+wxComponet.init({
   Store: [store],
   methods: {}
 })

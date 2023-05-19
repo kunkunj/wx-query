@@ -1,12 +1,12 @@
 const {
   WxRequest,
-  WxComponet,
+  wxComponet,
   createStore
 } = require('../../sdk/index.js')
 import { store } from '../../store/index.js'
 const app =getApp()
 
-WxComponet.init({
+wxComponet.init({
   /**
    * 组件的属性列表
    */

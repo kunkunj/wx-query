@@ -5,6 +5,7 @@ const {
   WxRequest,
   WxRouter
 } = require('../../sdk/index.js')
+const myPage = wxPage.create()
 import { store } from '../../store/index.js'
 const router = WxRouter()
 router.beforeEach((from, to, next) => {
