@@ -1,2 +1,2 @@
 # wx-query
-微信小程序封装库
+[官方文档](https://kunkunj.github.io/query-doc/#/)
